@@ -20,6 +20,7 @@
     - This is an inclusive operator
 - The ``exclusive or`` of propositions ``p`` and ``q`` is denoted by ``p xor q`` and is read as ``p or q but not both``
   - This is the exclusive operator for ``disjunction``
+  - Denoted by ``⨁``
 - The ``implication`` of propositions ``p`` and ``q`` is denoted by ``p -> q`` and is read as ``if p then q``
 - The ``biconditional`` of propositions ``p`` and ``q`` is denoted by ``p <-> q`` and is read as ``p if and only if q``
   - This can also be written as a conjunction of two implications
@@ -88,4 +89,3 @@ F | F | T    | T
 # Logical Equivalences
 - Two compound propositions are said to be logically equivalent if they have the same truth values for all possible truth values of their propositional variables
 - We can use truth tables to determine if two compound propositions are logically equivalent
-- 
