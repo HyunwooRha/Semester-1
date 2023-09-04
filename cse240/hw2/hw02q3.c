@@ -38,11 +38,11 @@ void part2(int x, int y) {
 
 	// Replace the 4 blank spaces below with the actual output observed when running the code in VS and GCC.
 	// The blanks should have the answers of unedited program. Keep the answers in blanks as they were, after editing the program.
-	printf("In VS : the result of combFunc = __ and combMacro = __ \n"); 			// (5 points)
+	printf("In VS : the result of combFunc = 0 and combMacro = -5 \n"); 			// (5 points)
 	printf("In GCC: the result of combFunc = -28 and combMacro = 8 \n\n"); 		// (5 points)
 
 	// Explain in a short sentence why VS and GCC could possibly produce a different value for the same program and for the same input.
-	printf("Explanation: _____\n\n"); //  (2.5 points)
+	printf("Explanation: the compilers for gcc and VS are different. The preprocessor might also work differently.\n\n"); //  (2.5 points)
 }
 
 // Do not edit main()  
