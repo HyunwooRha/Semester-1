@@ -2,7 +2,7 @@
 - A proposition is declarative a statement that is either true or false
 - It cannot be true and false at the same time
 - Statements like ``x + 2 = 4`` are not propositions because they are not declarative
-- Statements like ``1+1=2`` are propositions because they are declarative
+- Statements like ``1 + 1 = 2`` are propositions because they are declarative
 - Statements like ``x + 2 = 4, where x is 2`` are propositions because they are declarative
 
 ## Propositional Variables
