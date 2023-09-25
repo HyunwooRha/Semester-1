@@ -1,0 +1,78 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_00000140cab658f0 .scope module, "full_adder_top" "full_adder_top" 2 4;
+ .timescale -9 -9;
+v00000140cabae8e0_0 .var "cin", 0 0;
+v00000140cabadf80_0 .net "cout", 0 0, L_00000140cab55080;  1 drivers
+v00000140cabadd00_0 .var "in_a", 0 0;
+v00000140cabadb20_0 .var "in_b", 0 0;
+v00000140cabadbc0_0 .var/i "index", 31 0;
+v00000140cabade40 .array "resp_data", 7 0, 5 0;
+v00000140cabadc60_0 .net "sum", 0 0, L_00000140cab54bb0;  1 drivers
+S_00000140cab65a80 .scope module, "full_adder" "full_adder" 2 32, 3 6 0, S_00000140cab658f0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 1 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+L_00000140cab54fa0 .functor XOR 1, v00000140cabadd00_0, v00000140cabadb20_0, C4<0>, C4<0>;
+L_00000140cab54bb0 .functor XOR 1, L_00000140cab54fa0, v00000140cabae8e0_0, C4<0>, C4<0>;
+L_00000140cab54f30 .functor AND 1, v00000140cabae8e0_0, v00000140cabadd00_0, C4<1>, C4<1>;
+L_00000140cab54c20 .functor AND 1, v00000140cabae8e0_0, v00000140cabadb20_0, C4<1>, C4<1>;
+L_00000140cab55010 .functor OR 1, L_00000140cab54f30, L_00000140cab54c20, C4<0>, C4<0>;
+L_00000140cab55160 .functor AND 1, v00000140cabadb20_0, v00000140cabadd00_0, C4<1>, C4<1>;
+L_00000140cab55080 .functor OR 1, L_00000140cab55010, L_00000140cab55160, C4<0>, C4<0>;
+v00000140cab32d90_0 .net *"_ivl_0", 0 0, L_00000140cab54fa0;  1 drivers
+v00000140cab32910_0 .net *"_ivl_10", 0 0, L_00000140cab55160;  1 drivers
+v00000140cab1bcc0_0 .net *"_ivl_4", 0 0, L_00000140cab54f30;  1 drivers
+v00000140cab1bd60_0 .net *"_ivl_6", 0 0, L_00000140cab54c20;  1 drivers
+v00000140cab65c10_0 .net *"_ivl_8", 0 0, L_00000140cab55010;  1 drivers
+v00000140cab65cb0_0 .net "a", 0 0, v00000140cabadd00_0;  1 drivers
+v00000140cabad850_0 .net "b", 0 0, v00000140cabadb20_0;  1 drivers
+v00000140cabad8f0_0 .net "cin", 0 0, v00000140cabae8e0_0;  1 drivers
+v00000140cabad990_0 .net "cout", 0 0, L_00000140cab55080;  alias, 1 drivers
+v00000140cabada30_0 .net "sum", 0 0, L_00000140cab54bb0;  alias, 1 drivers
+    .scope S_00000140cab658f0;
+T_0 ;
+    %vpi_call 2 17 "$readmemh", "full_adder_stim.txt", v00000140cabade40 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_00000140cab658f0;
+T_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v00000140cabadbc0_0, 0, 32;
+T_1.0 ;
+    %load/vec4 v00000140cabadbc0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_1.1, 5;
+    %ix/getv/s 4, v00000140cabadbc0_0;
+    %load/vec4a v00000140cabade40, 4;
+    %parti/s 3, 0, 2;
+    %split/vec4 1;
+    %store/vec4 v00000140cabae8e0_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v00000140cabadb20_0, 0, 1;
+    %store/vec4 v00000140cabadd00_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 27 "$display", "a: ", v00000140cabadd00_0, " | b: ", v00000140cabadb20_0, " | cin: ", v00000140cabae8e0_0, " | cout,sum: ", v00000140cabadf80_0, v00000140cabadc60_0 {0 0 0};
+    %load/vec4 v00000140cabadbc0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v00000140cabadbc0_0, 0, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "full_adder_top.v";
+    "full_adder.v";
