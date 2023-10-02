@@ -284,11 +284,13 @@ int addTileSet(char* tileName_input, char* variety_input, unsigned int tileID_in
 {
 	tileType tile_enum;
 	// Write the code below.
+	// Check if tileID_input is already in the list
 	for (int i = 0; i < tileCount; i++) {
 		if (tileList[i].tileID == tileID_input) {
 			return 0;
 		}
 	}
+	// Add tileset to list
 	if (tileCount < MAX_TILESETS) {
 		switch(variety_input[0]) {
 			case 'C':
@@ -306,6 +308,8 @@ int addTileSet(char* tileName_input, char* variety_input, unsigned int tileID_in
 		tileList[tileCount].tileID = tileID_input;
 		tileCount++;
 		return 1;
+	} else if (tileCount == MAX_TILESETS) { // If tileset list is full
+		return 2;
 	}
 	return 0;										// edit this line as needed
 }
@@ -323,12 +327,13 @@ int addLevel(char* levelName_input, unsigned int tileID_input, unsigned int leve
 {
     struct level* tempList = levelList;		        // work on a copy of 'levelList'
 	// Write the code below.
-	for (int i = 0; i < levelCount; i++) {
+	for (int i = 0; i < levelCount; i++) { // Check if levelID_input is already in the list
 		if (tempList->levelID == levelID_input) {
 			return 0;
 		}
 		tempList = tempList->next;
 	}
+	// Add level to list
 	if (levelCount < MAX_LEVELS) {
 		struct level* newLevel = (struct level*)malloc(sizeof(struct level));
 		strcpy(newLevel->levelName, levelName_input);
@@ -347,6 +352,8 @@ int addLevel(char* levelName_input, unsigned int tileID_input, unsigned int leve
 		}
 		levelCount++;
 		return 1;
+	} else if (levelCount == MAX_LEVELS) { // If level list is full
+		return 2;
 	}
 	return 0;										// edit this line as needed
 }
@@ -363,13 +370,13 @@ int deleteTileSet(unsigned int tileID_input)
 	struct tileset tilesetTemp;						// useful for swapping structs. Not absolutely necessary to use.
     struct level* tempList = levelList;		        // work on a copy of 'levelList'
 	// Write the code below
-	for (int i = 0; i < tileCount; i++) {
+	for (int i = 0; i < tileCount; i++) { // Check if tileID_input is already in the list
 		if (tileList[i].tileID == tileID_input) {
-			for (int j = i; j < tileCount - 1; j++) {
+			for (int j = i; j < tileCount - 1; j++) { // Restore array structure
 				tileList[j] = tileList[j + 1];
 			}
 			tileCount--;
-			for (int j = 0; j < levelCount; j++) {
+			for (int j = 0; j < levelCount; j++) { // Check if tileset is used by any level
 				if (tempList->currentSet == tileID_input) {
 					tempList->currentSet = 9999;
 				}
@@ -391,16 +398,17 @@ int deleteLevel(unsigned int levelID_input)
     struct level* tempListPrev = levelList;		        // work on a copy of 'levelList'
 	// Write the code below.
 	for (int i = 0; i < levelCount; i++) {
-		if (tempListCur->levelID == levelID_input) {
+		if (tempListCur->levelID == levelID_input) { // Check if levelID_input is already in the list
 			if (tempListCur == levelList) {
 				levelList = tempListCur->next;
-			} else {
+			} else { // Restore linked list structure
 				tempListPrev->next = tempListCur->next;
 			}
-			free(tempListCur);
+			free(tempListCur); // Free memory
 			levelCount--;
 			return 1;
 		}
+		// Traverse through linked list
 		tempListPrev = tempListCur;
 		tempListCur = tempListCur->next;
 	}
@@ -426,7 +434,7 @@ void sort()
     struct level* tempList = levelList;		        // work on a copy of 'levelList'
     int swapped = 0;				                // indicator for checking whether or not swap happened. May be useful
 	// Write the code below.
-	do {
+	do { // Bubble sort
 		swapped = 0;
 		for (int i = 0; i < tileCount - 1; i++) {
 			if (tileList[i].tileID > tileList[i + 1].tileID) {
@@ -436,8 +444,8 @@ void sort()
 				swapped = 1;
 			}
 		}
-	} while (swapped == 1);
-	do {
+	} while (swapped == 1); // Repeat until no swaps are made
+	do { // Bubble sort
 		swapped = 0;
 		for (int i = 0; i < levelCount - 1; i++) {
 			if (tempList->difficulty > tempList->next->difficulty) {
@@ -460,8 +468,8 @@ void sort()
 			tempList = tempList->next;
 		}
 		tempList = levelList;
-	} while (swapped == 1);
-	
+	} while (swapped == 1); // Repeat until no swaps are made
+
 
 
 	// display message for user to check the result of sorting. Do not touch this
@@ -481,40 +489,50 @@ void sort()
 //	You can simply delete the file to 'reset the lists' or to avoid loading from it.
 void load(char* fileName)
 {
-	// Write the code below.
-	FILE* file;
-	file = fopen(fileName, "rb");
-	if (file == NULL) {
-		return;
-	}
-	fread(&tileCount, sizeof(tileCount), 1, file);
-	for (int i = 0; i < tileCount; i++) {
-		fread(tileList[i].tileName, sizeof(tileList[i].tileName), 1, file);
-		fread(&tileList[i].variety, sizeof(tileList[i].variety), 1, file);
-		fread(&tileList[i].tileID, sizeof(tileList[i].tileID), 1, file);
-	}
-	fread(&levelCount, sizeof(levelCount), 1, file);
-	struct level* tempList = levelList;
-	for (int i = 0; i < levelCount; i++) {
-		struct level* newLevel = (struct level*)malloc(sizeof(struct level));
-		fread(newLevel->levelName, sizeof(newLevel->levelName), 1, file);
-		fread(&newLevel->currentSet, sizeof(newLevel->currentSet), 1, file);
-		fread(&newLevel->levelID, sizeof(newLevel->levelID), 1, file);
-		fread(&newLevel->difficulty, sizeof(newLevel->difficulty), 1, file);
-		newLevel->next = NULL;
-		if (levelList == NULL) {
-			levelList = newLevel;
-		} else {
-			tempList = levelList;
-			while (tempList->next != NULL) {
-				tempList = tempList->next;
-			}
-			tempList->next = newLevel;
-		}
-	}
-	fclose(file);
+    // Write the code below.
+    struct level* tempList = levelList;                                            // work on a copy of 'list'
+    int varietyValue;
+    FILE* fileLoader;
+    int tileCounter = 0;
+    int levelCounter = 0;
+    int setID, tempID, tempDif;
+    char tempName[MAX_NAME_LENGTH];
+    char varietyType[MAX_NAME_LENGTH];
 
-	// The following two print statements are used in your code. You may have to change their position but not their contents. 
-	printf("%s not found.\n", fileName);
-	// printf("Lists successfully loaded from %s.\n", fileName);
+    fileLoader = fopen(fileName, "rb");                                            // open fileLoader for reading
+	// Check if file exists
+    if (fileLoader == NULL) {
+        printf("%s not found.\n", fileName);
+        return;
+    }
+	fread(&tileCounter, sizeof(tileCounter), 1, fileLoader); // First, store the number of tilesets in the list
+	for (int i = 0; i < tileCounter; i++){
+		fread(tempName, sizeof(tempName), 1, fileLoader);
+		fread(&varietyValue, sizeof(varietyValue), 1, fileLoader);
+		fread(&tempID, sizeof(tempID), 1, fileLoader);
+		// convert varietyType to string based on varietyValue
+		if (varietyValue == 0) {
+			strcpy(varietyType, "City");
+		} else if (varietyValue == 1) {
+			strcpy(varietyType, "Dungeon");
+		} else {
+			strcpy(varietyType, "Wilderness");
+		}
+		addTileSet(tempName, varietyType, tempID); //Add Tileset
+	}
+
+	fread(&levelCounter, sizeof(levelCounter), 1, fileLoader);
+
+	for (int i = 0; i < levelCounter; i++) {
+		fread(tempName, sizeof(tempName), 1, fileLoader);
+		fread(&setID, sizeof(setID), 1, fileLoader);
+		fread(&tempID, sizeof(tempID), 1, fileLoader);
+		fread(&tempDif, sizeof(tempDif), 1, fileLoader);
+
+		addLevel(tempName, setID, tempID, tempDif); //Add Level
+	}
+	printf("Lists successfully loaded from %s.\n", fileName);
+
+
+    fclose(fileLoader);                                        // close the fileLoader after writing
 }
