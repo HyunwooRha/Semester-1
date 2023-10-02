@@ -1,3 +1,4 @@
+BiggusListus.txt not found.
 
 Enter your selection:
 	 1: add a new tileset
@@ -22,7 +23,7 @@ Enter your selection:
 	 q: quit
 
 Enter tileset name: Enter whether the tileset is 'City' or 'Dungeon' or 'Wilderness': Please enter tileset ID number: 
-Tileset successfully added to the list! 
+Tileset is already on the list! 
 
 
 Enter your selection:
@@ -35,7 +36,20 @@ Enter your selection:
 	 q: quit
 
 Enter tileset name: Enter whether the tileset is 'City' or 'Dungeon' or 'Wilderness': Please enter tileset ID number: 
-Tileset successfully added to the list! 
+Tileset is already on the list! 
+
+
+Enter your selection:
+	 1: add a new tileset
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
+
+Enter level name: Please enter associated tileset ID number: Please enter level ID number: Please enter level difficulty number: 
+Level is already on the list! 
 
 
 Enter your selection:
@@ -61,7 +75,7 @@ Enter your selection:
 	 q: quit
 
 Enter level name: Please enter associated tileset ID number: Please enter level ID number: Please enter level difficulty number: 
-Level successfully added to the list! 
+Level is already on the list! 
 
 
 Enter your selection:
@@ -73,30 +87,22 @@ Enter your selection:
 	 6: sort tilesets by ID and levels by difficulty
 	 q: quit
 
-Enter level name: Please enter associated tileset ID number: Please enter level ID number: Please enter level difficulty number: 
-Level successfully added to the list! 
-
-
-Enter your selection:
-	 1: add a new tileset
-	 2: add a new level
-	 3: display tileset and level lists
-	 4: remove a tileset from list
-	 5: remove a level from list
-	 6: sort tilesets by ID and levels by difficulty
-	 q: quit
-
-Tileset name: Tundra
-Tileset Type: Wilderness
-Tileset ID Number: 773
+Tileset name: Catacombs
+Tileset Type: Dungeon
+Tileset ID Number: 234
 
 Tileset name: Emeraldtowns
 Tileset Type: City
 Tileset ID Number: 99432
 
-Tileset name: Catacombs
-Tileset Type: Dungeon
-Tileset ID Number: 234
+Tileset name: Tundra
+Tileset Type: Wilderness
+Tileset ID Number: 773
+
+Level Name: LostCatacombs
+Current Tileset ID: 234
+Level ID Number: 8888
+Level Difficulty: 2
 
 Level Name: EmeraldCity
 Current Tileset ID: 99432
@@ -106,11 +112,6 @@ Level Difficulty: 3
 Level Name: FrozenWilderness
 Current Tileset ID: 773
 Level ID Number: 1112
-Level Difficulty: 2
-
-Level Name: LostCatacombs
-Current Tileset ID: 234
-Level ID Number: 8888
 Level Difficulty: 2
 
 Enter your selection:
@@ -134,13 +135,18 @@ Enter your selection:
 	 6: sort tilesets by ID and levels by difficulty
 	 q: quit
 
+Tileset name: Catacombs
+Tileset Type: Dungeon
+Tileset ID Number: 234
+
 Tileset name: Emeraldtowns
 Tileset Type: City
 Tileset ID Number: 99432
 
-Tileset name: Catacombs
-Tileset Type: Dungeon
-Tileset ID Number: 234
+Level Name: LostCatacombs
+Current Tileset ID: 234
+Level ID Number: 8888
+Level Difficulty: 2
 
 Level Name: EmeraldCity
 Current Tileset ID: 99432
@@ -150,11 +156,6 @@ Level Difficulty: 3
 Level Name: FrozenWilderness
 Current Tileset ID: 9999
 Level ID Number: 1112
-Level Difficulty: 2
-
-Level Name: LostCatacombs
-Current Tileset ID: 234
-Level ID Number: 8888
 Level Difficulty: 2
 
 Enter your selection:
@@ -178,23 +179,23 @@ Enter your selection:
 	 6: sort tilesets by ID and levels by difficulty
 	 q: quit
 
-Tileset name: Emeraldtowns
-Tileset Type: City
-Tileset ID Number: 99432
-
 Tileset name: Catacombs
 Tileset Type: Dungeon
 Tileset ID Number: 234
 
-Level Name: EmeraldCity
-Current Tileset ID: 99432
-Level ID Number: 885
-Level Difficulty: 3
+Tileset name: Emeraldtowns
+Tileset Type: City
+Tileset ID Number: 99432
 
 Level Name: LostCatacombs
 Current Tileset ID: 234
 Level ID Number: 8888
 Level Difficulty: 2
+
+Level Name: EmeraldCity
+Current Tileset ID: 99432
+Level ID Number: 885
+Level Difficulty: 3
 
 Enter your selection:
 	 1: add a new tileset
