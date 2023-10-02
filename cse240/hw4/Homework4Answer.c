@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#pragma warning(disable: 4996) 		        // for Visual Studio Only. You can remove this for GCC
+// #pragma warning(disable: 4996) 		        // for Visual Studio Only. You can remove this for GCC
 
 #define MAX_TILESETS 10                     // Number of tilesets 
 #define MAX_LEVELS 5                        // Number of levels
@@ -426,39 +426,42 @@ void sort()
     struct level* tempList = levelList;		        // work on a copy of 'levelList'
     int swapped = 0;				                // indicator for checking whether or not swap happened. May be useful
 	// Write the code below.
-	for (int i = 0; i < tileCount; i++) {
-		for (int j = 0; j < tileCount - i - 1; j++) {
-			if (tileList[j].tileID > tileList[j + 1].tileID) {
-				tilesetTemp = tileList[j];
-				tileList[j] = tileList[j + 1];
-				tileList[j + 1] = tilesetTemp;
+	do {
+		swapped = 0;
+		for (int i = 0; i < tileCount - 1; i++) {
+			if (tileList[i].tileID > tileList[i + 1].tileID) {
+				tilesetTemp = tileList[i];
+				tileList[i] = tileList[i + 1];
+				tileList[i + 1] = tilesetTemp;
+				swapped = 1;
 			}
 		}
-	}
-	for (int i = 0; i < levelCount; i++) {
-		for (int j = 0; j < levelCount - i - 1; j++) {
+	} while (swapped == 1);
+	do {
+		swapped = 0;
+		for (int i = 0; i < levelCount - 1; i++) {
 			if (tempList->difficulty > tempList->next->difficulty) {
 				struct level* tempLevel = (struct level*)malloc(sizeof(struct level));
-				tempLevel->levelID = tempList->levelID;
-				tempLevel->currentSet = tempList->currentSet;
-				tempLevel->difficulty = tempList->difficulty;
 				strcpy(tempLevel->levelName, tempList->levelName);
-				tempLevel->next = tempList->next;
-				tempList->levelID = tempList->next->levelID;
-				tempList->currentSet = tempList->next->currentSet;
-				tempList->difficulty = tempList->next->difficulty;
+				tempLevel->currentSet = tempList->currentSet;
+				tempLevel->levelID = tempList->levelID;
+				tempLevel->difficulty = tempList->difficulty;
 				strcpy(tempList->levelName, tempList->next->levelName);
-				tempList->next = tempList->next->next;
-				tempList->next->levelID = tempLevel->levelID;
-				tempList->next->currentSet = tempLevel->currentSet;
-				tempList->next->difficulty = tempLevel->difficulty;
+				tempList->currentSet = tempList->next->currentSet;
+				tempList->levelID = tempList->next->levelID;
+				tempList->difficulty = tempList->next->difficulty;
 				strcpy(tempList->next->levelName, tempLevel->levelName);
-				tempList->next->next = tempLevel->next;
+				tempList->next->currentSet = tempLevel->currentSet;
+				tempList->next->levelID = tempLevel->levelID;
+				tempList->next->difficulty = tempLevel->difficulty;
+				free(tempLevel);
+				swapped = 1;
 			}
 			tempList = tempList->next;
 		}
 		tempList = levelList;
-	}
+	} while (swapped == 1);
+	
 
 
 	// display message for user to check the result of sorting. Do not touch this

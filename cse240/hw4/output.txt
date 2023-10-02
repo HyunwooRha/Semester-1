@@ -159,4 +159,86 @@ Level Difficulty: 2
 
 Enter your selection:
 	 1: add a new tileset
-	 2: add a
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
+Please enter the ID number of the level to be deleted: 
+Level deleted successfully! 
+
+
+Enter your selection:
+	 1: add a new tileset
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
+
+Tileset name: Emeraldtowns
+Tileset Type: City
+Tileset ID Number: 99432
+
+Tileset name: Catacombs
+Tileset Type: Dungeon
+Tileset ID Number: 234
+
+Level Name: EmeraldCity
+Current Tileset ID: 99432
+Level ID Number: 885
+Level Difficulty: 3
+
+Level Name: LostCatacombs
+Current Tileset ID: 234
+Level ID Number: 8888
+Level Difficulty: 2
+
+Enter your selection:
+	 1: add a new tileset
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
+
+Both lists sorted! Use display option '3' to view the sorted lists.
+
+Enter your selection:
+	 1: add a new tileset
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
+
+Tileset name: Catacombs
+Tileset Type: Dungeon
+Tileset ID Number: 234
+
+Tileset name: Emeraldtowns
+Tileset Type: City
+Tileset ID Number: 99432
+
+Level Name: LostCatacombs
+Current Tileset ID: 234
+Level ID Number: 8888
+Level Difficulty: 2
+
+Level Name: EmeraldCity
+Current Tileset ID: 99432
+Level ID Number: 885
+Level Difficulty: 3
+
+Enter your selection:
+	 1: add a new tileset
+	 2: add a new level
+	 3: display tileset and level lists
+	 4: remove a tileset from list
+	 5: remove a level from list
+	 6: sort tilesets by ID and levels by difficulty
+	 q: quit
