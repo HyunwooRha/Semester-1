@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#pragma warning(disable: 4996) 		        // for Visual Studio Only. You can remove this for GCC
+#pragma warning(disable: 4996) 		        // for Visual Studio Only. You can remove this for GCC
 
 #define MAX_TILESETS 10                     // Number of tilesets 
 #define MAX_LEVELS 5                        // Number of levels
@@ -435,6 +435,31 @@ void sort()
 			}
 		}
 	}
+	for (int i = 0; i < levelCount; i++) {
+		for (int j = 0; j < levelCount - i - 1; j++) {
+			if (tempList->difficulty > tempList->next->difficulty) {
+				struct level* tempLevel = (struct level*)malloc(sizeof(struct level));
+				tempLevel->levelID = tempList->levelID;
+				tempLevel->currentSet = tempList->currentSet;
+				tempLevel->difficulty = tempList->difficulty;
+				strcpy(tempLevel->levelName, tempList->levelName);
+				tempLevel->next = tempList->next;
+				tempList->levelID = tempList->next->levelID;
+				tempList->currentSet = tempList->next->currentSet;
+				tempList->difficulty = tempList->next->difficulty;
+				strcpy(tempList->levelName, tempList->next->levelName);
+				tempList->next = tempList->next->next;
+				tempList->next->levelID = tempLevel->levelID;
+				tempList->next->currentSet = tempLevel->currentSet;
+				tempList->next->difficulty = tempLevel->difficulty;
+				strcpy(tempList->next->levelName, tempLevel->levelName);
+				tempList->next->next = tempLevel->next;
+			}
+			tempList = tempList->next;
+		}
+		tempList = levelList;
+	}
+
 
 	// display message for user to check the result of sorting. Do not touch this
 	printf("\nBoth lists sorted! Use display option '3' to view the sorted lists.\n");
